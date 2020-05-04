@@ -28,6 +28,7 @@ const UserForm = () => {
                   onChange={e => setInput({ name: e.target.value })}
                   label="Name"
                   error={errors.name}
+                  defaultValue={form.name}
                />
             </div>
             <div className="form-group">
@@ -36,6 +37,7 @@ const UserForm = () => {
                   onChange={e => setInput({ email: e.target.value })}
                   label="E-mail"
                   error={errors.email}
+                  defaultValue={form.email}
                />
             </div>
             <div className="form-group">
@@ -44,6 +46,7 @@ const UserForm = () => {
                   onChange={e => setInput({ password: e.target.value })}
                   label="Password"
                   error={errors.password}
+                  defaultValue={form.password}
                />
             </div>
 
