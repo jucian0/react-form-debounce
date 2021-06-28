@@ -1,6 +1,6 @@
-import React from 'react';
-import FormControlled from './Components/FormControlled'
-import FormDebounce from './Components/FormDebounce'
+import React from "react";
+import FormControlled from "./Components/FormControlled";
+import FormDebounce from "./Components/FormDebounce";
 
 function App() {
   return (
