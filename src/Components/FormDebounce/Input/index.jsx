@@ -1,24 +1,21 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { debounce } from "../Debounce";
 
-const Input = ({ error, label, onChange, ...rest }) => {
+function Input({ error, label, onChange, ...rest }) {
   const [touched, setTouched] = useState(false);
   const inputRef = useRef(null);
-  const debounceInput = debounce(onChange, 1000);
-
-  function handleBlur() {
-    setTouched(true);
-  }
+  const debounceInput = useCallback(debounce(onChange, 500), [debounce]);
+  const blurInput = useCallback(() => setTouched(true), [setTouched]);
 
   useEffect(() => {
     inputRef.current.addEventListener("input", debounceInput);
-    inputRef.current.addEventListener("blur", handleBlur);
+    inputRef.current.addEventListener("blur", blurInput);
 
     return () => {
       inputRef.current.removeEventListener("input", debounceInput);
-      inputRef.current.removeEventListener("blur", handleBlur);
+      inputRef.current.removeEventListener("blur", blurInput);
     };
-  }, [debounceInput, inputRef]);
+  }, [blurInput, debounceInput, inputRef]);
 
   return (
     <>
@@ -27,6 +24,5 @@ const Input = ({ error, label, onChange, ...rest }) => {
       <span className="text-danger">{touched && error}</span>
     </>
   );
-};
-
+}
 export default Input;
